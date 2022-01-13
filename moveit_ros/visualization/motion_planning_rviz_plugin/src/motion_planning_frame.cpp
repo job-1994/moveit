@@ -251,17 +251,17 @@ void MotionPlanningFrame::allowExternalProgramCommunication(bool enable)
   if (enable)
   {
     ros::NodeHandle nh;
-    plan_subscriber_ = nh.subscribe("/rviz/moveit/plan", 1, &MotionPlanningFrame::remotePlanCallback, this);
-    execute_subscriber_ = nh.subscribe("/rviz/moveit/execute", 1, &MotionPlanningFrame::remoteExecuteCallback, this);
-    stop_subscriber_ = nh.subscribe("/rviz/moveit/stop", 1, &MotionPlanningFrame::remoteStopCallback, this);
+    plan_subscriber_ = nh.subscribe("rviz/moveit/plan", 1, &MotionPlanningFrame::remotePlanCallback, this);
+    execute_subscriber_ = nh.subscribe("rviz/moveit/execute", 1, &MotionPlanningFrame::remoteExecuteCallback, this);
+    stop_subscriber_ = nh.subscribe("rviz/moveit/stop", 1, &MotionPlanningFrame::remoteStopCallback, this);
     update_start_state_subscriber_ =
-        nh.subscribe("/rviz/moveit/update_start_state", 1, &MotionPlanningFrame::remoteUpdateStartStateCallback, this);
+        nh.subscribe("rviz/moveit/update_start_state", 1, &MotionPlanningFrame::remoteUpdateStartStateCallback, this);
     update_goal_state_subscriber_ =
-        nh.subscribe("/rviz/moveit/update_goal_state", 1, &MotionPlanningFrame::remoteUpdateGoalStateCallback, this);
+        nh.subscribe("rviz/moveit/update_goal_state", 1, &MotionPlanningFrame::remoteUpdateGoalStateCallback, this);
     update_custom_start_state_subscriber_ = nh.subscribe(
-        "/rviz/moveit/update_custom_start_state", 1, &MotionPlanningFrame::remoteUpdateCustomStartStateCallback, this);
+        "rviz/moveit/update_custom_start_state", 1, &MotionPlanningFrame::remoteUpdateCustomStartStateCallback, this);
     update_custom_goal_state_subscriber_ = nh.subscribe(
-        "/rviz/moveit/update_custom_goal_state", 1, &MotionPlanningFrame::remoteUpdateCustomGoalStateCallback, this);
+        "rviz/moveit/update_custom_goal_state", 1, &MotionPlanningFrame::remoteUpdateCustomGoalStateCallback, this);
   }
   else
   {  // disable

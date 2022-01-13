@@ -548,7 +548,7 @@ void RobotInteraction::addInteractiveMarkers(const InteractionHandlerPtr& handle
 void RobotInteraction::registerMoveInteractiveMarkerTopic(const std::string& marker_name, const std::string& name)
 {
   std::stringstream ss;
-  ss << "/rviz/moveit/move_marker/";
+  ss << "rviz/moveit/move_marker/";
   ss << name;
   int_marker_move_topics_.push_back(ss.str());
   int_marker_names_.push_back(marker_name);

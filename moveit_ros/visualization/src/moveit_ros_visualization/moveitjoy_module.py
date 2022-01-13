@@ -581,7 +581,7 @@ class MoveitJoy:
             self.planning_groups_tips[g] = ri.get_group_joint_tips(g)
             if len(self.planning_groups_tips[g]) > 0:
                 planning_groups[g] = [
-                    "/rviz/moveit/move_marker/goal_" + l
+                    "rviz/moveit/move_marker/goal_" + l
                     for l in self.planning_groups_tips[g]
                 ]
         for name in planning_groups.keys():
@@ -608,26 +608,26 @@ class MoveitJoy:
         self.initialized = False
         self.parseSRDF()
         self.plan_group_pub = rospy.Publisher(
-            "/rviz/moveit/select_planning_group", String, queue_size=5
+            "rviz/moveit/select_planning_group", String, queue_size=5
         )
         self.updatePlanningGroup(0)
         self.updatePoseTopic(0, False)
-        self.joy_pose_pub = rospy.Publisher("/joy_pose", PoseStamped, queue_size=1)
-        self.plan_pub = rospy.Publisher("/rviz/moveit/plan", Empty, queue_size=5)
-        self.execute_pub = rospy.Publisher("/rviz/moveit/execute", Empty, queue_size=5)
+        self.joy_pose_pub = rospy.Publisher("joy_pose", PoseStamped, queue_size=1)
+        self.plan_pub = rospy.Publisher("rviz/moveit/plan", Empty, queue_size=5)
+        self.execute_pub = rospy.Publisher("rviz/moveit/execute", Empty, queue_size=5)
         self.update_start_state_pub = rospy.Publisher(
-            "/rviz/moveit/update_start_state", Empty, queue_size=5
+            "rviz/moveit/update_start_state", Empty, queue_size=5
         )
         self.update_goal_state_pub = rospy.Publisher(
-            "/rviz/moveit/update_goal_state", Empty, queue_size=5
+            "rviz/moveit/update_goal_state", Empty, queue_size=5
         )
         self.interactive_marker_sub = rospy.Subscriber(
-            "/rviz_moveit_motion_planning_display/robot_interaction_interactive_marker_topic/update_full",
+            "rviz_moveit_motion_planning_display/robot_interaction_interactive_marker_topic/update_full",
             InteractiveMarkerInit,
             self.markerCB,
             queue_size=1,
         )
-        self.sub = rospy.Subscriber("/joy", Joy, self.joyCB, queue_size=1)
+        self.sub = rospy.Subscriber("joy", Joy, self.joyCB, queue_size=1)
 
     def updatePlanningGroup(self, next_index):
         if next_index >= len(self.planning_groups_keys):
